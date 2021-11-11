@@ -5,6 +5,7 @@ export const theme = {
     primary: "#b5c401",
     white: "#ffffff",
     black: "#191919",
+    error: "#ff7675",
     border: {
       light: "#ebebeb",
       dark: "#dddddd",
@@ -15,5 +16,8 @@ export const theme = {
       "600": "#868686",
       "700": "#707070",
     },
+  },
+  mediaQueries: {
+    mq906: "906px",
   },
 };

@@ -29,7 +29,8 @@ export const GlobalStyle = createGlobalStyle`${({ theme }) => css`
   select {
     font-family: ${theme.fonts};
     font-size: 1rem;
-    color: ${theme.colors.text["700"]};
+    font-style: italic;
+    color: ${theme.colors.text[700]};
   }
 
   a {
