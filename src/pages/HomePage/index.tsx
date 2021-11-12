@@ -23,7 +23,7 @@ export function HomePage() {
 
   return (
     <>
-      <Header hasHomeLink />
+      <Header />
       <S.Container>
         <S.Top>
           <S.Subtitle>Recent Games</S.Subtitle>
@@ -33,7 +33,7 @@ export function HomePage() {
             handleClearGameType={handleClearGameType}
             handleChangeGameType={handleChangeGameType}
           />
-          <S.NewBetLink to="/">
+          <S.NewBetLink to="/new-bet">
             New Bet
             <S.ArrowRightIcon />
           </S.NewBetLink>
