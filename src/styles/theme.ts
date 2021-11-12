@@ -2,9 +2,12 @@ export const theme = {
   fonts: ["Helvetica", "Arial", "sans-serif"].join(", "),
   colors: {
     background: "#f7f7f7",
+    backgroundDark: "#f4f4f4",
     primary: "#b5c401",
     white: "#ffffff",
     black: "#191919",
+    gray: "#adc0c4",
+    green: "#27C383",
     error: "#ff7675",
     border: {
       light: "#ebebeb",
@@ -19,5 +22,6 @@ export const theme = {
   },
   mediaQueries: {
     mq906: "906px",
+    mq1060: "1060px",
   },
 };
