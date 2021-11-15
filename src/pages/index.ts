@@ -1,3 +1,3 @@
-export * from "./LoginPage";
+export * from "./AuthPage";
 export * from "./HomePage";
 export * from "./NewBetPage";

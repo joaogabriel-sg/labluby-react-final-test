@@ -9,7 +9,7 @@ import {
 
 import * as S from "./styles";
 
-export function LoginPage() {
+export function AuthPage() {
   return (
     <S.Container>
       <S.Content>

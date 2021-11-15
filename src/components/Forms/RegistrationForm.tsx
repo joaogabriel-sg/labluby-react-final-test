@@ -114,7 +114,7 @@ export function RegistrationForm() {
           <S.ArrowRightIcon />
         </S.Button>
       </S.Form>
-      <S.HelperLink to="/login">
+      <S.HelperLink to="/auth">
         <S.ArrowLeftIcon />
         Back
       </S.HelperLink>
