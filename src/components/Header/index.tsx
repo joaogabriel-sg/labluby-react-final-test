@@ -1,5 +1,9 @@
 import { useCallback, useState } from "react";
 
+import { useAppDispatch } from "../../hooks";
+
+import { logout } from "../../store/auth";
+
 import * as S from "./styles";
 
 type HeaderProps = {
@@ -7,6 +11,7 @@ type HeaderProps = {
 };
 
 export function Header({ hasHomeLink = false }: HeaderProps) {
+  const dispatch = useAppDispatch();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleOpenMobileMenu = useCallback(() => {
@@ -16,6 +21,10 @@ export function Header({ hasHomeLink = false }: HeaderProps) {
   const handleCloseMobileMenu = useCallback(() => {
     setIsMobileMenuOpen(false);
   }, []);
+
+  const handleLogoutUser = useCallback(() => {
+    dispatch(logout());
+  }, [dispatch]);
 
   return (
     <S.Container>
@@ -34,7 +43,7 @@ export function Header({ hasHomeLink = false }: HeaderProps) {
           </S.MenuItem>
 
           <S.MenuItem>
-            <S.MenuLogoutButton>
+            <S.MenuLogoutButton onClick={handleLogoutUser}>
               Log out
               <S.ArrowRightIcon />
             </S.MenuLogoutButton>
