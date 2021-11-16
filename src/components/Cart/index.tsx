@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import toast from "react-hot-toast";
 
 import { CartGames } from "..";
 import { useAppDispatch, useAppSelector } from "../../hooks";
@@ -22,7 +23,14 @@ export function Cart() {
   }, []);
 
   function handleSaveCart() {
-    if (totalPrice <= minCartValue) return;
+    if (totalPrice <= minCartValue) {
+      toast.error(
+        `Your cart must have a total price greater than ${formatCurrencyToBRL(
+          minCartValue
+        )}.`
+      );
+      return;
+    }
 
     dispatch(saveCart());
   }

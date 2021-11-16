@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import toast from "react-hot-toast";
 
 import { AppDispatch, RootState } from "..";
 
@@ -25,4 +26,5 @@ export const saveCart = createAsyncThunk<
   };
 
   thunkApi.dispatch(updateAuthenticatedUserData(updatedUserData));
+  toast.success("Bets added to your account!");
 });

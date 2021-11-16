@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
+import toast from "react-hot-toast";
 
 import { ChooseGame, FillYourBet, GameControls, Loading } from "..";
 
@@ -55,8 +56,14 @@ export function GameArea() {
       setSelectedNumbers((prevSelectedNumbers) => {
         if (!selectedTypeOfGame) return prevSelectedNumbers;
 
-        if (prevSelectedNumbers.length >= selectedTypeOfGame["max-number"])
+        const currentNumbersLength = prevSelectedNumbers.length;
+        if (currentNumbersLength >= selectedTypeOfGame["max-number"]) {
+          const numbersWord = currentNumbersLength === 1 ? "number" : "number";
+          toast.error(
+            `Oops... you have already selected ${currentNumbersLength} ${numbersWord}.`
+          );
           return prevSelectedNumbers;
+        }
 
         return sortArray([...prevSelectedNumbers, number]);
       });
@@ -95,7 +102,15 @@ export function GameArea() {
   const handleAddToCart = useCallback(() => {
     if (!selectedTypeOfGame) return;
 
-    if (selectedNumbers.length < selectedTypeOfGame["max-number"]) return;
+    const remainingQuantity =
+      selectedTypeOfGame["max-number"] - selectedNumbers.length;
+    if (remainingQuantity) {
+      const numbersWord = remainingQuantity === 1 ? "number" : "numbers";
+      toast.error(
+        `Incomplete bet!\n Please select ${remainingQuantity} ${numbersWord}.`
+      );
+      return;
+    }
 
     const bet = {
       type: selectedTypeOfGame.type,

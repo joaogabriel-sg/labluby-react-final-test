@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import toast from "react-hot-toast";
 import { v4 as uuidv4 } from "uuid";
 
 import { User } from "../../types";
@@ -30,6 +31,7 @@ const authSlice = createSlice({
       );
 
       if (!existentUser) {
+        toast.error("Invalid credentials, please try again.");
         return;
       }
 
@@ -37,6 +39,11 @@ const authSlice = createSlice({
       state.authenticatedUser = existentUser;
     },
     logout(state) {
+      const userName = state.authenticatedUser?.name;
+      toast(`See you later, ${userName}!`, {
+        icon: "👋",
+      });
+
       state.isAuthenticated = false;
       state.authenticatedUser = null;
     },
@@ -46,6 +53,7 @@ const authSlice = createSlice({
         id: uuidv4(),
         bets: [],
       };
+      toast.success(`Welcome, ${newUser.name}!`);
 
       state.users.push(newUser);
       state.isAuthenticated = true;
