@@ -3,6 +3,8 @@ import { ThemeProvider } from "styled-components";
 
 import { AppRoutes } from "./routes";
 
+import { Toast } from "./components";
+
 import { GlobalStyle, theme } from "./styles";
 
 export function App() {
@@ -10,6 +12,7 @@ export function App() {
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <AppRoutes />
+        <Toast />
         <GlobalStyle />
       </ThemeProvider>
     </BrowserRouter>
