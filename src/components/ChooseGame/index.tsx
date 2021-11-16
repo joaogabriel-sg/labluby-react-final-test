@@ -1,12 +1,9 @@
+import { TypeOfGame } from "../../types";
+
 import * as S from "./styles";
 
-type TypeOfGame = {
-  type: string;
-  color: string;
-};
-
 type ChooseGameProps = {
-  typeOfGames: TypeOfGame[];
+  typeOfGames: Pick<TypeOfGame, "type" | "color">[];
   selectedType: string;
   handleChangeSelectedTypeOfGame: (type: string) => void;
 };
