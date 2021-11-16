@@ -19,7 +19,7 @@ export function GamesTypeFilter({
   handleChangeGameType,
 }: GamesTypeFilterProps) {
   if (typeOfGames.length === 0)
-    return <S.EmptyMessage>Sem jogos</S.EmptyMessage>;
+    return <S.EmptyMessage>No games</S.EmptyMessage>;
 
   return (
     <S.Container>

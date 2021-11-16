@@ -12,7 +12,7 @@ export function RecentGames({ games }: RecentGamesProps) {
     return (
       <S.EmptyContainer>
         <S.EmptyImage />
-        Você ainda não tem jogos cadastrados...
+        You still don't have registered games...
       </S.EmptyContainer>
     );
 
