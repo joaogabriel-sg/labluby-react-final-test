@@ -3,6 +3,8 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { ChooseGame, FillYourBet, GameControls } from "..";
 
 import { useAppDispatch, useAppSelector } from "../../hooks";
+
+import { addToCart } from "../../store/cart";
 import { fetchGamesData } from "../../store/games/thunks";
 
 import { TypeOfGame } from "../../types";
@@ -89,6 +91,22 @@ export function GameArea() {
     });
   }, [selectedTypeOfGame]);
 
+  const handleAddToCart = useCallback(() => {
+    if (!selectedTypeOfGame) return;
+
+    if (selectedNumbers.length < selectedTypeOfGame["max-number"]) return;
+
+    const bet = {
+      type: selectedTypeOfGame.type,
+      price: selectedTypeOfGame.price,
+      numbers: selectedNumbers,
+      color: selectedTypeOfGame.color,
+    };
+
+    dispatch(addToCart(bet));
+    handleClearGame();
+  }, [dispatch, handleClearGame, selectedNumbers, selectedTypeOfGame]);
+
   return (
     <S.Container>
       <S.Subtitle>
@@ -113,6 +131,7 @@ export function GameArea() {
       <GameControls
         handleCompleteGame={handleCompleteGame}
         handleClearGame={handleClearGame}
+        handleAddToCart={handleAddToCart}
       />
     </S.Container>
   );

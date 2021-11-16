@@ -1,18 +1,10 @@
+import { Bet } from "../../types";
 import { formatCurrencyToBRL, formatDate } from "../../utils";
 
 import * as S from "./styles";
 
-type Game = {
-  id: string;
-  type: string;
-  color: string;
-  date: Date;
-  price: number;
-  numbers: string[];
-};
-
 type RecentGamesProps = {
-  games: Game[];
+  games: Bet[];
 };
 
 export function RecentGames({ games }: RecentGamesProps) {

@@ -1,19 +1,27 @@
+import { useCallback } from "react";
+
+import { useAppDispatch } from "../../hooks";
+import { removeFromCart } from "../../store/cart";
+
+import { Bet } from "../../types";
 import { formatCurrencyToBRL } from "../../utils";
 
 import * as S from "./styles";
 
-type Game = {
-  type: string;
-  price: number;
-  numbers: string[];
-  color?: string;
-};
-
 type CartGamesProps = {
-  games: Game[];
+  games: Bet[];
 };
 
 export function CartGames({ games }: CartGamesProps) {
+  const dispatch = useAppDispatch();
+
+  const handleDeleteGame = useCallback(
+    (id: string) => {
+      dispatch(removeFromCart(id));
+    },
+    [dispatch]
+  );
+
   if (games.length === 0)
     return (
       <S.EmptyContainer>
@@ -24,9 +32,12 @@ export function CartGames({ games }: CartGamesProps) {
 
   return (
     <S.Container>
-      {games.map(({ type, price, numbers, color }) => (
-        <S.Game>
-          <S.DeleteGameButton type="button">
+      {games.map(({ id, type, price, numbers, color }) => (
+        <S.Game key={id}>
+          <S.DeleteGameButton
+            type="button"
+            onClick={handleDeleteGame.bind(null, id)}
+          >
             <S.TrashIcon />
           </S.DeleteGameButton>
 

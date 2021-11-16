@@ -3,11 +3,13 @@ import * as S from "./styles";
 type GameControlsProps = {
   handleCompleteGame: () => void;
   handleClearGame: () => void;
+  handleAddToCart: () => void;
 };
 
 export function GameControls({
   handleCompleteGame,
   handleClearGame,
+  handleAddToCart,
 }: GameControlsProps) {
   return (
     <S.Container>
@@ -20,7 +22,7 @@ export function GameControls({
         </S.ControlButton>
       </S.LeftButtons>
 
-      <S.ControlButton type="button">
+      <S.ControlButton type="button" onClick={handleAddToCart}>
         <S.ShoppingCartIcon />
         Add to cart
       </S.ControlButton>

@@ -1,12 +1,18 @@
 import { useCallback, useState } from "react";
 
 import { CartGames } from "..";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { saveCart } from "../../store/cart/thunks";
 
 import { formatCurrencyToBRL } from "../../utils";
 
 import * as S from "./styles";
 
 export function Cart() {
+  const { cart, totalPrice } = useAppSelector((state) => state.cart);
+  const { minCartValue } = useAppSelector((state) => state.games);
+  const dispatch = useAppDispatch();
+
   const [isMobileCartVisible, setIsMobileCartVisible] = useState(false);
 
   const handleToggleMobileCartVisibility = useCallback(() => {
@@ -15,24 +21,33 @@ export function Cart() {
     );
   }, []);
 
+  function handleSaveCart() {
+    if (totalPrice <= minCartValue) return;
+
+    dispatch(saveCart());
+  }
+
   return (
     <>
       <S.Container isMobileCartVisible={isMobileCartVisible}>
         <S.Content>
           <S.Section>
             <S.Subtitle>Cart</S.Subtitle>
-            <CartGames games={[]} />
+            <CartGames games={cart} />
           </S.Section>
 
           <S.Section>
             <S.Subtitle>
-              Cart <S.TotalPrice>total: {formatCurrencyToBRL(0)}</S.TotalPrice>
+              Cart{" "}
+              <S.TotalPrice>
+                total: {formatCurrencyToBRL(totalPrice)}
+              </S.TotalPrice>
             </S.Subtitle>
           </S.Section>
         </S.Content>
 
         <S.Footer>
-          <S.SaveButton type="button">
+          <S.SaveButton type="button" onClick={handleSaveCart}>
             Save
             <S.ArrowRightIcon />
           </S.SaveButton>
