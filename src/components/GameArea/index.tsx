@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-import { ChooseGame, FillYourBet, GameControls } from "..";
+import { ChooseGame, FillYourBet, GameControls, Loading } from "..";
 
 import { useAppDispatch, useAppSelector } from "../../hooks";
 
@@ -15,6 +15,7 @@ import * as S from "./styles";
 export function GameArea() {
   const dispatch = useAppDispatch();
   const typeOfGames = useAppSelector((state) => state.games.typeOfGames);
+  const isLoading = useAppSelector((state) => state.loading.isLoading);
 
   const [selectedTypeOfGame, setSelectedTypeOfGame] =
     useState<TypeOfGame | null>(null);
@@ -109,6 +110,8 @@ export function GameArea() {
 
   return (
     <S.Container>
+      <Loading isLoading={isLoading} />
+
       <S.Subtitle>
         New bet <S.CurrentGame>for {selectedTypeOfGame?.type}</S.CurrentGame>
       </S.Subtitle>
