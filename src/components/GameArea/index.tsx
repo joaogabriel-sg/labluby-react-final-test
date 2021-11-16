@@ -2,42 +2,29 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { ChooseGame, FillYourBet, GameControls } from "..";
 
-import { api } from "../../services";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { fetchGamesData } from "../../store/games/thunks";
 
+import { TypeOfGame } from "../../types";
 import { formatNumberToTwoDigits, sortArray } from "../../utils";
 
 import * as S from "./styles";
 
-type TypeOfGame = {
-  type: string;
-  description: string;
-  range: number;
-  price: number;
-  "max-number": number;
-  color: string;
-};
-
-type GamesData = {
-  "min-cart-value": number;
-  types: TypeOfGame[];
-};
-
 export function GameArea() {
-  const [typeOfGames, setTypeOfGames] = useState<TypeOfGame[]>([]);
+  const dispatch = useAppDispatch();
+  const typeOfGames = useAppSelector((state) => state.games.typeOfGames);
+
   const [selectedTypeOfGame, setSelectedTypeOfGame] =
     useState<TypeOfGame | null>(null);
   const [selectedNumbers, setSelectedNumbers] = useState<string[]>([]);
 
   useEffect(() => {
-    async function getGamesData() {
-      const { data } = await api.get<GamesData>("games.json");
-      const { types } = data;
-      setTypeOfGames(types);
-      setSelectedTypeOfGame(types[0]);
-    }
+    dispatch(fetchGamesData());
+  }, [dispatch]);
 
-    getGamesData();
-  }, []);
+  useEffect(() => {
+    setSelectedTypeOfGame(typeOfGames[0]);
+  }, [typeOfGames]);
 
   const numbers = useMemo(() => {
     if (!selectedTypeOfGame) return [];
