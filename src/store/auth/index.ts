@@ -14,15 +14,7 @@ type LoginData = Pick<User, "email" | "password">;
 type RegisterData = Omit<User, "id" | "bets">;
 
 const initialState: AuthState = {
-  users: [
-    {
-      id: "abcdefghij",
-      name: "João Gabriel",
-      email: "jgsg@email.com",
-      password: "jgsg1234",
-      bets: [],
-    },
-  ],
+  users: [],
   authenticatedUser: null,
   isAuthenticated: false,
 };
@@ -59,9 +51,18 @@ const authSlice = createSlice({
       state.isAuthenticated = true;
       state.authenticatedUser = newUser;
     },
+    updateAuthenticatedUserData(state, { payload }: PayloadAction<User>) {
+      if (!state.authenticatedUser) return;
+
+      state.authenticatedUser = payload;
+      state.users = state.users.map((user) =>
+        user.id === payload.id ? payload : user
+      );
+    },
   },
 });
 
-export const { login, logout, register } = authSlice.actions;
+export const { login, logout, register, updateAuthenticatedUserData } =
+  authSlice.actions;
 
 export const authReducer = authSlice.reducer;
