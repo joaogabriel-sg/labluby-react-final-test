@@ -48,16 +48,21 @@ const authSlice = createSlice({
       state.authenticatedUser = null;
     },
     register(state, { payload }: PayloadAction<RegisterData>) {
+      if (state.users.find((user) => user.email === payload.email)) {
+        toast.error("This e-mail is already in use!");
+        return;
+      }
+
       const newUser: User = {
         ...payload,
         id: uuidv4(),
         bets: [],
       };
-      toast.success(`Welcome, ${newUser.name}!`);
 
       state.users.push(newUser);
       state.isAuthenticated = true;
       state.authenticatedUser = newUser;
+      toast.success(`Welcome, ${newUser.name}!`);
     },
     updateAuthenticatedUserData(state, { payload }: PayloadAction<User>) {
       if (!state.authenticatedUser) return;
