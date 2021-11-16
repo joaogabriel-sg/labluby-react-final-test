@@ -9,3 +9,4 @@ export * from "./FillYourBet";
 export * from "./GameControls";
 export * from "./Cart";
 export * from "./CartGames";
+export * from "./Loading";
