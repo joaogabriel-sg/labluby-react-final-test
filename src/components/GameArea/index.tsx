@@ -21,6 +21,7 @@ export function GameArea() {
   const [selectedTypeOfGame, setSelectedTypeOfGame] =
     useState<TypeOfGame | null>(null);
   const [selectedNumbers, setSelectedNumbers] = useState<string[]>([]);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     dispatch(fetchGamesData());
@@ -29,6 +30,10 @@ export function GameArea() {
   useEffect(() => {
     setSelectedTypeOfGame(typeOfGames[0]);
   }, [typeOfGames]);
+
+  useEffect(() => {
+    if (errorMessage) toast.error(errorMessage);
+  }, [errorMessage]);
 
   const numbers = useMemo(() => {
     if (!selectedTypeOfGame) return [];
@@ -56,11 +61,12 @@ export function GameArea() {
       setSelectedNumbers((prevSelectedNumbers) => {
         if (!selectedTypeOfGame) return prevSelectedNumbers;
 
-        const currentNumbersLength = prevSelectedNumbers.length;
-        if (currentNumbersLength >= selectedTypeOfGame["max-number"]) {
-          const numbersWord = currentNumbersLength === 1 ? "number" : "number";
-          toast.error(
-            `Oops... you have already selected ${currentNumbersLength} ${numbersWord}.`
+        const currentSelectedNumbersLength = prevSelectedNumbers.length;
+        if (currentSelectedNumbersLength >= selectedTypeOfGame["max-number"]) {
+          const numbersWord =
+            currentSelectedNumbersLength === 1 ? "number" : "number";
+          setErrorMessage(
+            `Oops... you have already selected ${currentSelectedNumbersLength} ${numbersWord}.`
           );
           return prevSelectedNumbers;
         }
@@ -106,7 +112,7 @@ export function GameArea() {
       selectedTypeOfGame["max-number"] - selectedNumbers.length;
     if (remainingQuantity) {
       const numbersWord = remainingQuantity === 1 ? "number" : "numbers";
-      toast.error(
+      setErrorMessage(
         `Incomplete bet!\n Please select ${remainingQuantity} ${numbersWord}.`
       );
       return;
