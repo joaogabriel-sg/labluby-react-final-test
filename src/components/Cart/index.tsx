@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 import { CartGames } from "..";
@@ -14,6 +15,7 @@ export function Cart() {
   const { minCartValue } = useAppSelector((state) => state.games);
   const dispatch = useAppDispatch();
 
+  const navigate = useNavigate();
   const [isMobileCartVisible, setIsMobileCartVisible] = useState(false);
 
   const handleToggleMobileCartVisibility = useCallback(() => {
@@ -33,6 +35,7 @@ export function Cart() {
     }
 
     dispatch(saveCart());
+    navigate("/");
   }
 
   return (
