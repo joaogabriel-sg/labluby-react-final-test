@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 
-import { AppDispatch, RootState } from "..";
+import { AppDispatch, RootState } from "@store";
+import { updateAuthenticatedUserData } from "@store/auth";
 
-import { updateAuthenticatedUserData } from "../auth";
-import { User } from "../../types";
+import { User } from "@shared/types";
 
 export const saveCart = createAsyncThunk<
   void,

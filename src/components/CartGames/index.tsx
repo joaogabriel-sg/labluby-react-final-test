@@ -1,10 +1,10 @@
 import { useCallback } from "react";
 
-import { useAppDispatch } from "../../hooks";
-import { removeFromCart } from "../../store/cart";
+import { removeFromCart } from "@store/cart";
 
-import { Bet } from "../../types";
-import { formatCurrencyToBRL } from "../../utils";
+import { useAppDispatch } from "@shared/hooks";
+import { formatCurrencyToBRL } from "@shared/utils";
+import { Bet } from "@shared/types";
 
 import * as S from "./styles";
 

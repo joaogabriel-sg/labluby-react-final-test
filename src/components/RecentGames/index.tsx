@@ -1,5 +1,5 @@
-import { Bet } from "../../types";
-import { formatCurrencyToBRL, formatDate } from "../../utils";
+import { formatCurrencyToBRL, formatDate } from "@shared/utils";
+import { Bet } from "@shared/types";
 
 import * as S from "./styles";
 

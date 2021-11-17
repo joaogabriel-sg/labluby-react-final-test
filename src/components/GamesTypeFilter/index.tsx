@@ -7,14 +7,14 @@ type TypeOfGame = {
 
 type GamesTypeFilterProps = {
   typeOfGames: TypeOfGame[];
-  currentGameType: string;
-  handleClearGameType: () => void;
-  handleChangeGameType: (newType: string) => void;
+  currentTypeOfGames: string[];
+  handleClearGameType: (type: string) => void;
+  handleChangeGameType: (type: string) => void;
 };
 
 export function GamesTypeFilter({
   typeOfGames,
-  currentGameType,
+  currentTypeOfGames,
   handleClearGameType,
   handleChangeGameType,
 }: GamesTypeFilterProps) {
@@ -26,9 +26,9 @@ export function GamesTypeFilter({
       <S.Title>Filters</S.Title>
       <S.TypeOfGames>
         {typeOfGames.map(({ type, color }) => {
-          const isActive = type === currentGameType;
+          const isActive = currentTypeOfGames.includes(type);
           const handleClickGameType = isActive
-            ? handleClearGameType
+            ? handleClearGameType.bind(null, type)
             : handleChangeGameType.bind(null, type);
 
           return (

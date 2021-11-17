@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-import { EmptyGames } from "../../assets";
+import { EmptyGames } from "../../shared/assets";
 
 export const EmptyContainer = styled.section`
   margin-top: 2.6rem;

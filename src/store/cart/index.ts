@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import { saveCart } from "./thunks";
 
-import { Bet } from "../../types";
+import { Bet } from "@shared/types";
 
 type CartState = {
   cart: Bet[];

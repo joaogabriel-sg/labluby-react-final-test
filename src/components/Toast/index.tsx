@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom";
 import { Toaster } from "react-hot-toast";
 
-import { theme } from "../../styles";
+import { theme } from "@shared/styles";
 
 export function Toast() {
   return ReactDOM.createPortal(

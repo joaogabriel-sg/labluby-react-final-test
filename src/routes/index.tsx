@@ -1,8 +1,8 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 
-import { AuthPage, HomePage, NewBetPage } from "../pages";
+import { AccountPage, AuthPage, HomePage, NewBetPage } from "@pages";
 
-import { useAppSelector } from "../hooks";
+import { useAppSelector } from "@shared/hooks";
 
 export function AppRoutes() {
   const isAuthenticated = useAppSelector((state) => state.auth.isAuthenticated);
@@ -20,6 +20,10 @@ export function AppRoutes() {
       <Route
         path="new-bet"
         element={isAuthenticated ? <NewBetPage /> : <Navigate to="/auth" />}
+      />
+      <Route
+        path="account"
+        element={isAuthenticated ? <AccountPage /> : <Navigate to="/auth" />}
       />
     </Routes>
   );

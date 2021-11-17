@@ -1,11 +1,11 @@
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 
-import { AppRoutes } from "./routes";
+import { AppRoutes } from "@routes";
 
-import { Toast } from "./components";
+import { Toast } from "@components";
 
-import { GlobalStyle, theme } from "./styles";
+import { GlobalStyle, theme } from "@shared/styles";
 
 export function App() {
   return (

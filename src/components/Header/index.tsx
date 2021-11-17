@@ -1,8 +1,8 @@
 import { useCallback, useState } from "react";
 
-import { useAppDispatch } from "../../hooks";
+import { logout } from "@store/auth";
 
-import { logout } from "../../store/auth";
+import { useAppDispatch } from "@shared/hooks";
 
 import * as S from "./styles";
 
@@ -39,7 +39,7 @@ export function Header({ hasHomeLink = false }: HeaderProps) {
           )}
 
           <S.MenuItem>
-            <S.MenuLink to="/">Account</S.MenuLink>
+            <S.MenuLink to="/account">Account</S.MenuLink>
           </S.MenuItem>
 
           <S.MenuItem>

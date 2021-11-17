@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { FiTrash2 } from "react-icons/fi";
 
-import { EmptyGames } from "../../assets";
+import { EmptyGames } from "../../shared/assets";
 
 export const EmptyContainer = styled.div`
   ${({ theme }) => css`
