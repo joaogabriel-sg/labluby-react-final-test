@@ -39,7 +39,7 @@ export function Header({ hasHomeLink = false }: HeaderProps) {
           )}
 
           <S.MenuItem>
-            <S.MenuLink to="/">Account</S.MenuLink>
+            <S.MenuLink to="/account">Account</S.MenuLink>
           </S.MenuItem>
 
           <S.MenuItem>
