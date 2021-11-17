@@ -2,9 +2,10 @@ import { ChangeEvent, useCallback, useState } from "react";
 
 export const useInput = (
   errorMessage: string,
-  validateValue: (value: string) => boolean
+  validateValue: (value: string) => boolean,
+  initialValue?: string
 ) => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(initialValue || "");
   const [isTouched, setIsTouched] = useState(false);
 
   const isValueValid = validateValue(value);
