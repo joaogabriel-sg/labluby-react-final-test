@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@pages": ["./src/pages"],
+      "@components": ["./src/components"],
+      "@routes": ["./src/routes"],
+      "@store": ["./src/store"],
+      "@store/*": ["./src/store/*"],
+      "@shared/styles": ["./src/shared/styles"],
+      "@shared/assets": ["./src/shared/assets"],
+      "@shared/hooks": ["./src/shared/hooks"],
+      "@shared/services": ["./src/shared/services"],
+      "@shared/utils": ["./src/shared/utils"],
+      "@shared/types": ["./src/shared/types"]
+    }
+  }
+}
