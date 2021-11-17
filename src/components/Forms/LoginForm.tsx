@@ -1,10 +1,9 @@
 import { FormEvent } from "react";
 
-import { useAppDispatch, useInput } from "../../hooks";
+import { login } from "@store/auth";
 
-import { login } from "../../store/auth";
-
-import { isEmailValid } from "../../utils";
+import { useAppDispatch, useInput } from "@shared/hooks";
+import { isEmailValid } from "@shared/utils";
 
 import * as S from "./styles";
 

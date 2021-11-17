@@ -1,8 +1,8 @@
 import { useCallback, useState } from "react";
 
-import { useAppDispatch } from "../../hooks";
+import { logout } from "@store/auth";
 
-import { logout } from "../../store/auth";
+import { useAppDispatch } from "@shared/hooks";
 
 import * as S from "./styles";
 

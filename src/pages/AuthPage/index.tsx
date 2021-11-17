@@ -5,7 +5,7 @@ import {
   RegistrationForm,
   ResetPasswordForm,
   Footer,
-} from "../../components";
+} from "@components";
 
 import * as S from "./styles";
 

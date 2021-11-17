@@ -1,8 +1,8 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 
-import { AccountPage, AuthPage, HomePage, NewBetPage } from "../pages";
+import { AccountPage, AuthPage, HomePage, NewBetPage } from "@pages";
 
-import { useAppSelector } from "../hooks";
+import { useAppSelector } from "@shared/hooks";
 
 export function AppRoutes() {
   const isAuthenticated = useAppSelector((state) => state.auth.isAuthenticated);

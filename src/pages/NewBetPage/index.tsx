@@ -1,4 +1,4 @@
-import { Cart, Footer, GameArea, Header } from "../../components";
+import { Cart, Footer, GameArea, Header } from "@components";
 
 import * as S from "./styles";
 

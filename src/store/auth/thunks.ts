@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 
-import { updateAuthenticatedUserData } from ".";
+import { AppDispatch, RootState } from "@store";
+import { updateAuthenticatedUserData } from "@store/auth";
 
-import { User } from "../../types";
-import { AppDispatch, RootState } from "..";
+import { User } from "@shared/types";
 
 export const updateAccountSettings = createAsyncThunk<
   void,

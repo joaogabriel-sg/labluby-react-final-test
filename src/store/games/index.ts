@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { fetchGamesData } from "./thunks";
 
-import { TypeOfGame } from "../../types";
+import { TypeOfGame } from "@shared/types";
 
 type GamesState = {
   minCartValue: number;

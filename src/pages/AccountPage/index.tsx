@@ -1,14 +1,13 @@
 import { FormEvent, useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Footer, Header } from "../../components";
+import { Footer, Header } from "@components";
 
-import { useAppDispatch, useAppSelector, useInput } from "../../hooks";
+import { updateAccountSettings } from "@store/auth/thunks";
 
-import { updateAccountSettings } from "../../store/auth/thunks";
-
-import { User } from "../../types";
-import { isEmailValid } from "../../utils";
+import { useAppDispatch, useAppSelector, useInput } from "@shared/hooks";
+import { User } from "@shared/types";
+import { isEmailValid } from "@shared/utils";
 
 import * as S from "./styles";
 

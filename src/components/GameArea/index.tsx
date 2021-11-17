@@ -1,15 +1,14 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 
-import { ChooseGame, FillYourBet, GameControls, Loading } from "..";
+import { ChooseGame, FillYourBet, GameControls, Loading } from "@components";
 
-import { useAppDispatch, useAppSelector } from "../../hooks";
+import { addToCart } from "@store/cart";
+import { fetchGamesData } from "@store/games/thunks";
 
-import { addToCart } from "../../store/cart";
-import { fetchGamesData } from "../../store/games/thunks";
-
-import { TypeOfGame } from "../../types";
-import { formatNumberToTwoDigits, sortArray } from "../../utils";
+import { useAppDispatch, useAppSelector } from "@shared/hooks";
+import { formatNumberToTwoDigits, sortArray } from "@shared/utils";
+import { TypeOfGame } from "@shared/types";
 
 import * as S from "./styles";
 

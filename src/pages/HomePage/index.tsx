@@ -1,10 +1,9 @@
 import { useCallback, useMemo, useState } from "react";
 
-import { Footer, GamesTypeFilter, Header, RecentGames } from "../../components";
+import { Footer, GamesTypeFilter, Header, RecentGames } from "@components";
 
-import { useAppSelector } from "../../hooks";
-
-import { Bet } from "../../types";
+import { useAppSelector } from "@shared/hooks";
+import { Bet } from "@shared/types";
 
 import * as S from "./styles";
 

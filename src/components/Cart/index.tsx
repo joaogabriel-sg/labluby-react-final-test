@@ -2,11 +2,12 @@ import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
-import { CartGames } from "..";
-import { useAppDispatch, useAppSelector } from "../../hooks";
-import { saveCart } from "../../store/cart/thunks";
+import { CartGames } from "@components";
 
-import { formatCurrencyToBRL } from "../../utils";
+import { saveCart } from "@store/cart/thunks";
+
+import { useAppDispatch, useAppSelector } from "@shared/hooks";
+import { formatCurrencyToBRL } from "@shared/utils";
 
 import * as S from "./styles";
 

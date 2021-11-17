@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { AppDispatch, RootState } from "..";
 
-import { api } from "../../services";
+import { AppDispatch, RootState } from "@store";
+import { setIsLoading } from "@store/loading";
 
-import { setIsLoading } from "../loading";
-import { TypeOfGame } from "../../types";
+import { api } from "@shared/services";
+import { TypeOfGame } from "@shared/types";
 
 type GamesApiData = {
   "min-cart-value": number;
