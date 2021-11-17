@@ -32,7 +32,10 @@ export function GameArea() {
   }, [typeOfGames]);
 
   useEffect(() => {
-    if (errorMessage) toast.error(errorMessage);
+    if (errorMessage) {
+      toast.error(errorMessage);
+      setErrorMessage("");
+    }
   }, [errorMessage]);
 
   const numbers = useMemo(() => {
