@@ -12,15 +12,17 @@ type TypeOfGameAndColor = Pick<Bet, "type" | "color">;
 
 export function HomePage() {
   const { authenticatedUser } = useAppSelector((state) => state.auth);
-  const [gameType, setGameType] = useState("");
+  const [selectedTypeOfGames, setSelectedTypeOfGames] = useState<string[]>([]);
 
-  const filteredGamesByType = useMemo<Bet[]>(() => {
+  const filteredGamesByTypes = useMemo<Bet[]>(() => {
     if (!authenticatedUser) return [];
+    if (authenticatedUser && !selectedTypeOfGames.length)
+      return authenticatedUser.bets;
 
-    if (authenticatedUser && !gameType) return authenticatedUser.bets;
-
-    return authenticatedUser.bets.filter((game) => game.type === gameType);
-  }, [authenticatedUser, gameType]);
+    return authenticatedUser.bets.filter((game) =>
+      selectedTypeOfGames.includes(game.type)
+    );
+  }, [authenticatedUser, selectedTypeOfGames]);
 
   const typeOfGames = useMemo<TypeOfGameAndColor[]>(() => {
     if (!authenticatedUser?.bets.length) return [];
@@ -34,11 +36,19 @@ export function HomePage() {
   }, [authenticatedUser]);
 
   const handleChangeGameType = useCallback((type: string) => {
-    setGameType(type);
+    setSelectedTypeOfGames((prevSelectedTypeOfGames) =>
+      prevSelectedTypeOfGames.includes(type)
+        ? prevSelectedTypeOfGames
+        : [...prevSelectedTypeOfGames, type]
+    );
   }, []);
 
-  const handleClearGameType = useCallback(() => {
-    setGameType("");
+  const handleClearGameType = useCallback((type: string) => {
+    setSelectedTypeOfGames((prevSelectedTypeOfGames) =>
+      prevSelectedTypeOfGames.filter(
+        (prevSelectedTypeOfGame) => prevSelectedTypeOfGame !== type
+      )
+    );
   }, []);
 
   return (
@@ -49,7 +59,7 @@ export function HomePage() {
           <S.Subtitle>Recent Games</S.Subtitle>
           <GamesTypeFilter
             typeOfGames={typeOfGames}
-            currentGameType={gameType}
+            currentTypeOfGames={selectedTypeOfGames}
             handleClearGameType={handleClearGameType}
             handleChangeGameType={handleChangeGameType}
           />
@@ -58,7 +68,7 @@ export function HomePage() {
             <S.ArrowRightIcon />
           </S.NewBetLink>
         </S.Top>
-        <RecentGames games={filteredGamesByType} />
+        <RecentGames games={filteredGamesByTypes} />
       </S.Container>
       <Footer />
     </>
